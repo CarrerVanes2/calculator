@@ -10,8 +10,13 @@ const main = () =>{
         throw new Error('Operation not supported')
     }
 
-    const test = {
+    const calculator = {
         add: (first, second) => first + second,
-        sub: (first, second) => first - second
+        sub: (first, second) => first - second,
+        mul: (first, second) => first * second,
+        div: (first, second) => first / second
     }
+
+    console.log('Output: ', calculator[operation](first, second))
+
 }
