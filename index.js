@@ -1,22 +1,28 @@
 //node index.js / 3 4
+const prompt = require('prompt')
 const main = () => {
-
-    const [ , , operation, first, second] = process.argv
-
-    console.log(`Welcome to the workshop, you provided the following params: ops:${operation}, ${first}, ${second} `)
-
-    const calculator = {
-        add: (first, second) => Number(first) + Number(second),
-        sub: (first, second) => first - second,
-        mul: (first, second) => first * second,
-        div: (first, second) => first / second,
-        exp: (first, second) => Math.pow(first,second),
+    let total = 0
+    // let [ , , operation, ... numbers] = process.argv
+    // console.log('Instructions: \n CLEAR to clear the memory, \n ADD to add ')
+    while(true){
+    let number = prompt.get('Insert a number')
+    if(typeof Number(number)!= "number"){
+        console.error('This is not a number')
+    }else{
+        let operation = prompt.get('What do you want to do?')
+        const calculator = {
+            add: (first, second) => first + second,
+            sub: (first, second) => first - second,
+            mul: (first, second) => first * second,
+            div: (first, second) => first / second,
+            exp: (first, second) => Math.pow(first,second),
+        }
+        if(!calculator[operation])  console.error('Operation not supported')
+        total = calculator[operation](total, number)
+        console.log('Output: ',total )
     }
-
-    if(!calculator[operation])  throw new Error('Operation not supported')
-
-    console.log('Output: ', calculator[operation](first, second))
-
+    }
 }
 
 main()
+// node index.js 3/4+5-2
